@@ -13,7 +13,7 @@ import TheHeader from '@/components/TheHeader/TheHeader'
 export default {
   components: {
     TheHeader
-  }  
+  }
 }
 </script>
 
@@ -25,6 +25,7 @@ export default {
 
   body {
     font-family: 'Lato', sans-serif;
+    margin: 0;
   }
 
   .main-content {
