@@ -1,14 +1,14 @@
 <template>
-	<nuxt-link 
+	<nuxt-link
 		:to="id">
 		<article class="post-preview">
 			<div
-				:style="{backgroundImage: `url(${thumbnailImage})`}" 
+				:style="{backgroundImage: `url(${thumbnailImage})`}"
 				class="post-preview-thumbnail"></div>
 			<div class="post-preview-content">
 				<h1>{{ title }}</h1>
 				<p>{{ excert }}</p>
-			</div>  
+			</div>
 		</article>
 	</nuxt-link>
 </template>
@@ -58,11 +58,11 @@
 	}
 
 	.post-preview-content {
-    text-align: center; 
+    text-align: center;
     padding: 1rem;
 	}
 
-  @media (min-width: 50rem) {
+  @media (min-width: 35rem) {
     .post-preview {
       width: 25rem;
     }
