@@ -1,59 +1,55 @@
 <template>
-  <section class="container">
-    <div>
-      <logo/>
-      <h1 class="title">
-        storyblock-app
-      </h1>
-      <h2 class="subtitle">
-        My riveting Nuxt.js project
-      </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">Documentation</a>
-        <a href="https://github.com/nuxt/nuxt.js" target="_blank" class="button--grey">GitHub</a>
-      </div>
-    </div>
+  <section id="posts">
+    <PostPreview
+      v-for="post in posts"
+      :key="post.id"
+      :title="post.title"
+      :id="post.id"
+      :thumbnailImage="post.thumbnailUrl"
+      :excert="post.previewText" />
   </section>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import PostPreview from '@/components/Blog/PostPreview';
 
 export default {
+  data() {
+    return {
+      posts: [
+          {
+            title: "A new Beginnig",
+            previewText: "This will be awesome, don\'t miss it!",
+            thumbnailUrl: "http://lorempixel.com/400/200/",
+            id: "a-new-beginnig"
+          },
+          {
+            title: "A second Beginnig",
+            previewText: "This will be awesome, don\'t miss it!",
+            thumbnailUrl: "http://lorempixel.com/400/400/",
+            id: "a-second-beginnig"
+          }
+        ]
+    }
+  },
   components: {
-    Logo
+    PostPreview
   }
 }
 </script>
 
-<style>
-.container
-{
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-.title
-{
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-.subtitle
-{
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-.links
-{
-  padding-top: 15px;
-}
+<style scoped>
+  #posts {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+  }
+
+  @media (min-width: 50rem) {
+    #posts {
+      flex-direction: row;
+    }
+  }
 </style>
