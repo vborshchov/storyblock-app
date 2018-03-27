@@ -3,8 +3,10 @@
         <div
             :style="{backgroundImage: `url(${image})`}"
             class="post-thumbnail"></div>
-        <h1>{{ title }}</h1>
-        <p>{{ content }}</p>
+        <div class="post-content">
+            <h1>{{ title }}</h1>
+            <p>{{ content }}</p>
+        </div>
     </div>
 </template>
 
