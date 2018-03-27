@@ -7,6 +7,7 @@
 
 <script>
   export default {
+    transition: 'bounce',
     asyncData(context) {
       return context.app.$storyapi.get('cdn/stories/about', {
           version: 'draft'
