@@ -26,6 +26,7 @@
   width: 80%;
   max-width: 500px;
   margin: auto;
+  padding-top: 2rem;
 }
 
 #about-page p {
