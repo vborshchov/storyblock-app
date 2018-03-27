@@ -56,6 +56,10 @@ module.exports = {
     // See https://github.com/nuxt-community/axios-module#options
   },
 
+  env: {
+    storiesVersion: process.env.STORIES_VERSION || 'draft'
+  },
+
   /*
   ** Build configuration
   */

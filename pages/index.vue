@@ -32,8 +32,9 @@ export default {
   //       ]
   //   }
   asyncData(context) {
+    let version = process.env.storiesVersion
     return context.app.$storyapi.get('cdn/stories', {
-      version: 'draft',
+      version: version,
       starts_with: 'blog/'
     }).then(res => {
       console.log(res);
@@ -57,6 +58,7 @@ export default {
 
 <style scoped>
   #posts {
+    flex-wrap: wrap;
     padding-top: 2rem;
     display: flex;
     justify-content: center;

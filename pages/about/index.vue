@@ -9,8 +9,9 @@
   export default {
     transition: 'bounce',
     asyncData(context) {
+      let version = process.env.storiesVersion
       return context.app.$storyapi.get('cdn/stories/about', {
-          version: 'draft'
+          version: version
         }).then(res => {
           console.log(res);
           return {
