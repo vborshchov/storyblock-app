@@ -1,5 +1,5 @@
 <template>
-    <div id="post">
+    <div id="post" v-editable="block">
         <div
             :style="{backgroundImage: `url(${image})`}"
             class="post-thumbnail"></div>
@@ -18,11 +18,18 @@
             }).then(res => {
                 console.log(res.data);
                 return {
+                    block: res.data.story.content,
                     image: res.data.story.content.thumbnail,
                     title: res.data.story.content.title,
                     content: res.data.story.content.content
                 }
             });
+        },
+        mounted() {
+            this.$storyblok.init()
+            this.$storyblok.on('change', () => {
+                location.reload(true)
+            })
         }
     }
 </script>
