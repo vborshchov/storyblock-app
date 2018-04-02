@@ -2,7 +2,7 @@
   <header class="main-header">
     <nav class="main-nav">
       <ul class="nav-links">
-        <nuxt-link class="nav-link" to="/" tag="li"><a>All posts</a></nuxt-link>
+        <nuxt-link class="nav-link" to="/blog" tag="li"><a>All posts</a></nuxt-link>
         <nuxt-link class="nav-link" to="/about" tag="li"><a>About</a></nuxt-link>
       </ul>
     </nav>
@@ -60,7 +60,7 @@
 
   .nav-link a:hover,
   .nav-link a:hover,
-  .nav-link.nuxt-link-exact-active a {
+  .nav-link.nuxt-link-active a {
     color: #06c4d1;
   }
 

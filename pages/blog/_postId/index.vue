@@ -1,0 +1,55 @@
+<template>
+    <div id="post" v-editable="block">
+        <div
+            :style="{backgroundImage: `url(${image})`}"
+            class="post-thumbnail"></div>
+        <div class="post-content">
+            <h1>{{ title }}</h1>
+            <p>{{ content }}</p>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        asyncData(context) {
+            return context.app.$storyapi.get('cdn/stories/blog/' + context.params.postId, {
+                version: process.env.NODE_ENV == 'production' ? 'published' : 'draft'
+            }).then(res => {
+                console.log(res.data);
+                return {
+                    block: res.data.story.content,
+                    image: res.data.story.content.thumbnail,
+                    title: res.data.story.content.title,
+                    content: res.data.story.content.content
+                }
+            });
+        },
+        mounted() {
+            this.$storyblok.init()
+            this.$storyblok.on('change', () => {
+                location.reload(true)
+            })
+        }
+    }
+</script>
+
+<style>
+    .post-thumbnail {
+        width: 100%;
+        height: 300px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .post-content {
+        width: 80%;
+        max-width: 500px;
+        margin: auto;
+    }
+
+    .post-content p {
+        white-space: pre-line;
+    }
+</style>
+

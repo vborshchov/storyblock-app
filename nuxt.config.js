@@ -1,4 +1,5 @@
 const pkg = require('./package')
+const axios = require("axios");
 
 module.exports = {
   mode: 'universal',
@@ -45,7 +46,13 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/axios-module#usage
     [
       'storyblok-nuxt',
-      {accessToken: 'rIh3l1gkhsWGKurvIgSz8gtt', cacheProvider: 'memory'}
+      {
+        accessToken:
+          process.env.NODE_ENV == "production"
+            ? "8tE4Yul3U1QoerbyvRUYGQtt"
+            : "rIh3l1gkhsWGKurvIgSz8gtt",
+        cacheProvider: "memory"
+      }
     ]
   ],
 
@@ -56,8 +63,22 @@ module.exports = {
     // See https://github.com/nuxt-community/axios-module#options
   },
 
-  env: {
-    storiesVersion: process.env.STORIES_VERSION || 'draft'
+  generate: {
+    routes: function() {
+      return axios.get(
+        "https://api.storyblok.com/v1/cdn/stories?version=published&token=8tE4Yul3U1QoerbyvRUYGQtt&starts_with=blog&cv=" +
+          Math.floor(Date.now() / 1e3)
+      )
+      .then(res => {
+        const blogPosts = res.data.stories.map(bp => bp.full_slug);
+        return [
+          '/',
+          '/blog',
+          '/about',
+          ...blogPosts
+        ]
+      });
+    }
   },
 
   /*
